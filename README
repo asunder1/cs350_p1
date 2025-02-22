@@ -1,2 +1,10 @@
-defined SYS_shutdown int in syscall.h
-added boilerplate syscall code for shutdown by adding to usys.S
+ADDING SHUTDOWN SYSTEM CALL:
+added user space function declaration to user.h
+
+implemented actual code for shutdown system call in sysproc.c
+
+assigned system call number in syscall.h
+
+linked system call number to its function by adding to syscall.c
+
+added the system call stub for user space by adding to usys.S
