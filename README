@@ -1,3 +1,8 @@
+ADDED MKDIR2 SYSTEM CALL:
+almost the same as shutdown, but implementation in sysfile.c instead of sysproc.c since that is where similar file-related system calls are like mkdir
+
+arguments are passed to wrapper function, but can be accessed via functions defined in syscall.c - namely argstr to grab an argument string which is the one relevant for this function
+
 ADDING SHUTDOWN SYSTEM CALL:
 added user space function declaration to user.h
 

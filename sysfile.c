@@ -443,3 +443,41 @@ sys_pipe(void)
   fd[1] = fd1;
   return 0;
 }
+
+// only returns 0 if both directories were able to be created
+// returns -1 and makes nothing if both directories weren't created
+int
+sys_mkdir2(void)
+{
+  char *path1, *path2;
+  
+  struct inode *ip1, *ip2;
+
+  char first_failure = 0, second_failure = 0;
+
+  begin_op();
+
+  // try to make both directories
+  if(argstr(0, &path1) < 0 || (ip1 = create(path1, T_DIR, 0, 0)) == 0){
+    first_failure = 1;
+  }
+  if(argstr(1, &path2) < 0 || (ip2 = create(path2, T_DIR, 0, 0)) == 0){
+    second_failure = 1;
+  }
+
+  // keep directories that succeeded
+  if (!first_failure) {
+    iunlockput(ip1);
+  }
+  if (!second_failure) {
+    iunlockput(ip2);
+  }
+
+  end_op();
+  
+  // return -1 if either failed or 0 otherwise
+  if (first_failure || second_failure) {
+    return -1;
+  }
+  return 0;
+}

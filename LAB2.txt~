@@ -1,3 +1,0 @@
-  cprintf("Hello I am printing to kernel space\n");
-
-The above is my line of code to print in kernel space. This is printed in kernelspace because it uses cprintf and is part of the main.c file which is only run in kernel space.
