@@ -90,10 +90,11 @@ sys_uptime(void)
   return xticks;
 }
 
-// if this returns 0, not successfully shut down
+
 int
 sys_shutdown(void)
 {
-  outw(0x604, 0x2000);
+  outw(0xB004, 0x0|0x2000);
+  outw(0x604, 0x0|0x2000);
   return 0;
 }
