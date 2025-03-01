@@ -20,6 +20,7 @@ extern void trapret(void);
 
 static void wakeup1(void *chan);
 
+
 void
 pinit(void)
 {
@@ -539,4 +540,69 @@ procdump(void)
     }
     cprintf("\n");
   }
+}
+
+// prints process info of "state" "openfiles" or "ids"
+extern int
+sys_procs(void) {
+  char *what_to_show;
+  if (argstr(0, &what_to_show) < 0) {
+    return -1;
+  }
+
+
+  // most of code for states taken from procdump function already here above
+  static char *states[] = {
+  [UNUSED]    "unused",
+  [EMBRYO]    "embryo",
+  [SLEEPING]  "sleep ",
+  [RUNNABLE]  "runble",
+  [RUNNING]   "run   ",
+  [ZOMBIE]    "zombie"
+  };
+  struct proc *p;
+  char *p_state;
+  int i, p_parent;
+  
+  if (strcmp(what_to_show, "state") == 0) {
+    cprintf("%s\t%s\n", "Name", "State");
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+      if(p->state == UNUSED)
+        continue;
+      if(p->state >= 0 && p->state < NELEM(states))
+        p_state = states[p->state];
+      else
+        p_state = "???";
+      cprintf("%s\t%s\n", p->name, p_state);
+    }
+  }
+
+  else if (strcmp(what_to_show, "openfiles") == 0) {
+    cprintf("%s\t%s\n", "Name", "Open Files");
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+      if (p->state == UNUSED)
+        continue;
+      cprintf("%s\t", p->name);
+      for (i = 0; i < NOFILE; i++) {
+        if (p->ofile[i])
+          cprintf("%d ", i);
+      }
+      cprintf("\n");
+    }
+  }
+
+  else if (strcmp(what_to_show, "ids") == 0) {
+    cprintf("%s\t%s\t%s\n", "Name", "ID", "Parent ID");
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+      if (p->state == UNUSED)
+        continue;
+      if (p->parent) {
+        p_parent = p->parent->pid;
+        cprintf("%s\t%d\t%d\n", p->name, p->pid, p_parent);
+      }
+      else // init seems to have no parent
+        cprintf("%s\t%d\t%s\n", p->name, p->pid, "NULL");
+    }
+  }
+  return 0;
 }

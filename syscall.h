@@ -22,3 +22,4 @@
 #define SYS_close  21
 #define SYS_shutdown 22
 #define SYS_mkdir2 23
+#define SYS_procs 24

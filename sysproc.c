@@ -7,6 +7,17 @@
 #include "mmu.h"
 #include "proc.h"
 
+// copy pasted from ulib.c to avoid errors from doing #include "ulib.c"
+int
+strcmp(const char *p, const char *q)
+{
+  while(*p && *p == *q)
+    p++, q++;
+  return (uchar)*p - (uchar)*q;
+}
+
+
+
 int
 sys_fork(void)
 {

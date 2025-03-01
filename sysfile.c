@@ -445,7 +445,7 @@ sys_pipe(void)
 }
 
 // only returns 0 if both directories were able to be created
-// returns -1 and makes nothing if both directories weren't created
+// returns -1 and leaves the one directory if one, or none if none were created
 int
 sys_mkdir2(void)
 {
