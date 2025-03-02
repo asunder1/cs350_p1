@@ -1,0 +1,92 @@
+System Calls Project
+
+Group 8:
+* Alexander Sunderhaft 
+* Yashwanth Reddy Medapati
+* Alex Eskenazi
+
+Status: All task completed, compiled, linked and tested
+
+shudown:
+* Implemented individually by each team member.
+
+mkdir2:
+* Implemented by Alexander Sunderhaft.
+
+shutdown2:
+* Implemented by Alex Eskenazi.
+
+--------------------------------------------------
+Custom sytem call 1: procs
+* by Alexander Sunderhaft.
+* List the current processes with specific data about them depending on the parameter.
+* procs state - displays the processes state.
+* procs openfiles - displays the list of open files.
+* procs ids - displays hte process ids and parent ids.
+
+output from tests:
+
+$ procs state
+Name    State
+init    sleep 
+sh      sleep 
+procs   run   
+$ procs openfiles
+Name    Open Files
+init    0 1 2 
+sh      0 1 2 
+procs   0 1 2 
+$ procs ids
+Name    ID      Parent ID
+init    1       NULL
+sh      2       1
+procs   6       2
+$ 
+
+
+--------------------------------------------------
+Custom sytem call 2: mkdirn
+* by Alex Eskenazi.
+* mkdirn: creates n directories with the numbers as sufix.
+* Takes two parameters:
+** n is the number of directories to create from 0 to 9 (to keep it simple)
+** path is the main directory name
+
+* For example: mkdirn 5 mydir
+* will create 5 directories named mydir1, mydir2, mydir3, mydir4, mydir5
+
+output from tests:
+
+$ mkdirn 5 Hola
+$ ls
+.              1 1 512
+..             1 1 512
+README         2 2 674
+cat            2 3 15296
+echo           2 4 14184
+forktest       2 5 8796
+grep           2 6 18100
+init           2 7 14812
+kill           2 8 14292
+ln             2 9 14172
+ls             2 10 16748
+mkdir          2 11 14300
+rm             2 12 14280
+sh             2 13 27308
+stressfs       2 14 15028
+usertests      2 15 61892
+wc             2 16 15660
+zombie         2 17 13876
+shutdown       2 18 14040
+shutdown2      2 19 14592
+uptime2        2 20 14780
+mkdir2         2 21 14132
+exit2          2 22 14440
+procs          2 23 14356
+mkdirn         2 24 14500
+console        3 25 0
+Hola1          1 26 32
+Hola2          1 27 32
+Hola3          1 28 32
+Hola4          1 29 32
+Hola5          1 30 32
