@@ -7,7 +7,7 @@
    REMEMBER to disable the stub functions (by commenting the following macro) to 
    allow your implementation to work properly. */
 
-#define STUB_FUNCS
+// #define STUB_FUNCS // commenting to disable stub functions
 #ifdef STUB_FUNCS
 void shutdown2(char * msg) {}
 #endif

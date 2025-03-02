@@ -109,3 +109,16 @@ sys_shutdown(void)
   outw(0x604, 0x0|0x2000);
   return 0;
 }
+
+int 
+sys_shutdown2(void) {
+  char *msg;
+  if(argstr(0, &msg) < 0)
+    return -1;
+  
+  cprintf("%s\n", msg);
+
+  // Send a special command to QEMU to trigger the shutdown
+  outw(0x604, 0x2000);  // This sends a shutdown signal to QEMU (using Bochs/QEMU-compatible port)
+  return 0;
+}

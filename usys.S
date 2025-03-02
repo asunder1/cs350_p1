@@ -32,4 +32,5 @@ SYSCALL(uptime)
 SYSCALL(shutdown)
 SYSCALL(mkdir2)
 SYSCALL(procs)
+SYSCALL(shutdown2)
 
