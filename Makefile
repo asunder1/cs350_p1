@@ -181,7 +181,8 @@ UPROGS=\
 	_uptime2 \
 	_mkdir2 \
 	_exit2 \
-	_procs
+	_procs \
+	_mkdirn
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)

@@ -481,3 +481,42 @@ sys_mkdir2(void)
   }
   return 0;
 }
+
+int
+sys_mkdirn(void)
+{
+  char *path;
+  char *count_str;
+  char fullpath[512];
+  int count, i;
+  struct inode *ip;
+
+  // Get arguments: count and base path
+  if(argstr(0, &count_str) < 0 || argstr(1, &path) < 0)
+    return -1;
+    
+  // Convert count string to integer
+  // We know the string contains a single digit, so we can just subtract '0' to get the integer value
+  count = count_str[0] - '0';
+  if(count <= 0)
+    return -1;
+
+  // Create n directories
+  for(i = 1; i <= count; i++) {
+    begin_op();
+    // Create path string with number suffix (e.g., "mydir1", "mydir2", etc.)
+    safestrcpy(fullpath, path, sizeof(fullpath));
+
+    int len = strlen(fullpath);
+    fullpath[len] = i + '0'; 
+    fullpath[len + 1] = '\0'; // Add null terminator
+    
+    if((ip = create(fullpath, T_DIR, 0, 0)) == 0){
+      end_op();
+      return -1;
+    }
+    iunlockput(ip);
+    end_op();
+  }
+  return 0;
+}

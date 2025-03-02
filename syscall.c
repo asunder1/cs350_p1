@@ -107,6 +107,7 @@ extern int sys_shutdown(void);
 extern int sys_mkdir2(void);
 extern int sys_procs(void);
 extern int sys_shutdown2(void);
+extern int sys_mkdirn(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -134,6 +135,7 @@ static int (*syscalls[])(void) = {
 [SYS_mkdir2]  sys_mkdir2,
 [SYS_procs]   sys_procs,
 [SYS_shutdown2]sys_shutdown2,
+[SYS_mkdirn]  sys_mkdirn,
 };
 
 void

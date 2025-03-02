@@ -33,4 +33,5 @@ SYSCALL(shutdown)
 SYSCALL(mkdir2)
 SYSCALL(procs)
 SYSCALL(shutdown2)
+SYSCALL(mkdirn)
 
