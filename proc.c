@@ -604,5 +604,7 @@ sys_procs(void) {
         cprintf("%s\t%d\t%s\n", p->name, p->pid, "NULL");
     }
   }
+  else
+    return -1;
   return 0;
 }
