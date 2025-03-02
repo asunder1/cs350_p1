@@ -25,3 +25,4 @@
 #define SYS_procs 24
 #define SYS_shutdown2 25
 #define SYS_mkdirn 26
+#define SYS_exit2 27

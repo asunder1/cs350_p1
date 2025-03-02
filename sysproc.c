@@ -122,3 +122,13 @@ sys_shutdown2(void) {
   outw(0x604, 0x2000);  // This sends a shutdown signal to QEMU (using Bochs/QEMU-compatible port)
   return 0;
 }
+
+int sys_exit2(void) {
+  int status;
+  if (argint(0, &status) < 0)
+      return -1;
+
+  cprintf("Process exited with status: %d\n", status);
+  exit(); 
+  return 0; 
+}
