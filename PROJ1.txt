@@ -8,7 +8,7 @@ Group 8:
 Status: All task completed, compiled, linked and tested
 
 shudown:
-* Implemented individually by each team member.
+* Implemented individually by each team member after discussion.
 
 mkdir2:
 * Implemented by Alexander Sunderhaft.
@@ -22,13 +22,20 @@ exit2:
 uptime2:
 * Implemented by Yashwanth Reddy Medapati.
 
+Notes:
+For mkdir2, no specs were given for behavior if only one dir could be made.
+Implementation here contains behavior as follows:
+If both directories could be made: makes both and returns 0
+If A could be made but not B, or if B could be made but not A: makes the one directory and returns -1
+If both directories could not be made: makes nothing and returns -1
+
 --------------------------------------------------
 Custom sytem call 1: procs
 * by Alexander Sunderhaft.
 * List the current processes with specific data about them depending on the parameter.
 * procs state - displays the processes state.
-* procs openfiles - displays the list of open files.
-* procs ids - displays hte process ids and parent ids.
+* procs openfiles - displays the list of open file descriptors.
+* procs ids - displays the process ids and parent ids.
 
 output from tests:
 
@@ -47,7 +54,11 @@ Name    ID      Parent ID
 init    1       NULL
 sh      2       1
 procs   6       2
-$ 
+$
+
+Notes:
+sys_procs is implemented in proc.c intead of sysproc.c
+
 
 
 --------------------------------------------------
