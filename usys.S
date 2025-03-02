@@ -35,5 +35,4 @@ SYSCALL(procs)
 SYSCALL(shutdown2)
 SYSCALL(mkdirn)
 SYSCALL(exit2)
-
-
+SYSCALL(uptime2)

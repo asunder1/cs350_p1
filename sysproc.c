@@ -132,3 +132,25 @@ int sys_exit2(void) {
   exit(); 
   return 0; 
 }
+
+int sys_uptime2(void) {
+  int option;
+  uint xticks;
+
+  if(argint(0, &option) < 0)
+      return -1;
+
+  acquire(&tickslock);
+  xticks = ticks;
+  release(&tickslock);
+
+  if (option == 1) {
+      return xticks;
+  } else if (option == 2) {
+      return xticks / 100;  
+  } else if (option == 3) {
+      return xticks / (100 * 60);  
+  }
+  
+  return -1; 
+}
