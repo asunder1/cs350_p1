@@ -16,6 +16,12 @@ mkdir2:
 shutdown2:
 * Implemented by Alex Eskenazi.
 
+exit2:
+* Implemented by Yashwanth Reddy Medapati.
+
+uptime2:
+* Implemented by Yashwanth Reddy Medapati.
+
 --------------------------------------------------
 Custom sytem call 1: procs
 * by Alexander Sunderhaft.
@@ -90,3 +96,108 @@ Hola2          1 27 32
 Hola3          1 28 32
 Hola4          1 29 32
 Hola5          1 30 32
+
+--------------------------------------------------
+Custom system call: uptime2
+* By Yashwanth Reddy Medapati
+* The uptime2 system call returns the number of clock ticks since the system started, 
+  similar to the original uptime system call.
+* uptime2 converts the clock ticks into seconds and milliseconds, 
+  providing more precise system uptime information.
+
+Example Usage: 
+$ uptime2 2|
+
+Output From Tests:
+$ uptime2 2
+Current Uptime in seconds: 7
+
+$ uptime2 1
+Current Uptime in ticks: 1679
+
+$ uptime2 3
+Current Uptime in minutes: 0
+
+$uptime2 14
+Available options for uptime output: 
+[
+1=seconds,
+2=days,
+3=years
+]
+
+$ ls
+.              1 1 512
+..             1 1 512
+README         2 2 674
+cat            2 3 15380
+echo           2 4 14268
+forktest       2 5 8880
+grep           2 6 18188
+init           2 7 14896
+kill           2 8 14376
+ln             2 9 14256
+ls             2 10 16836
+mkdir          2 11 14380
+rm             2 12 14360
+sh             2 13 27392
+stressfs       2 14 15116
+usertests      2 15 61976
+wc             2 16 15740
+zombie         2 17 13956
+shutdown       2 18 14124
+shutdown2      2 19 14676
+uptime2        2 20 14704
+mkdir2         2 21 14216
+exit2          2 22 14364
+procs          2 23 14436
+mkdirn         2 24 14584
+console        3 25 0
+
+--------------------------------------------------
+Custom system call: exit2
+* By Yashwanth Reddy Medapati
+* The exit2 system call allows a process to terminate while passing an exit status to the kernel, 
+  while the original exit system call, which does not take a status argument.
+* The status status can be used by the parent process to determine the reason for termination.
+
+Example Usage:
+$ exit2 0
+
+Output From Tests:
+$ exit2 0  
+Process exited with status: 0  
+
+$ exit2 1  
+Process exited with status: 1  
+
+$ exit2 200
+Process exited with status: 200
+
+$ ls
+.              1 1 512
+..             1 1 512
+README         2 2 674
+cat            2 3 15380
+echo           2 4 14268
+forktest       2 5 8880
+grep           2 6 18188
+init           2 7 14896
+kill           2 8 14376
+ln             2 9 14256
+ls             2 10 16836
+mkdir          2 11 14380
+rm             2 12 14360
+sh             2 13 27392
+stressfs       2 14 15116
+usertests      2 15 61976
+wc             2 16 15740
+zombie         2 17 13956
+shutdown       2 18 14124
+shutdown2      2 19 14676
+uptime2        2 20 14704
+mkdir2         2 21 14216
+exit2          2 22 14364
+procs          2 23 14436
+mkdirn         2 24 14584
+console        3 25 0
